@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
-using PhilipsHue.Service.FulcrumAdapter.Contract;
 using PhilipsHue.Service.FulcrumAdapter.Logic;
 using Q42.HueApi;
 using Q42.HueApi.ColorConverters;
@@ -16,7 +15,7 @@ namespace PhilipsHue.Service.FulcrumAdapter.Controllers
     /// <inheritdoc cref="IVisualNotificationController" />
     [FulcrumAuthorize(AuthenticationRoleEnum.InternalSystemUser)]
     [RoutePrefix("api/Notifications")]
-    public class VisualNotificationController : ApiController, IVisualNotificationController
+    public class VisualNotificationController : ApiController
     {
         private readonly IHueClient _hueClient;
         private readonly List<string> _lamps;

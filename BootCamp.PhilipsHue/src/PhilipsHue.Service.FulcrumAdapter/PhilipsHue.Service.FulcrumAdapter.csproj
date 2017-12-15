@@ -214,7 +214,6 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Contract\IVisualNotificationController.cs" />
     <Compile Include="Controllers\ServiceMetasController.cs" />
     <Compile Include="Controllers\VisualNotificationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Contract\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
