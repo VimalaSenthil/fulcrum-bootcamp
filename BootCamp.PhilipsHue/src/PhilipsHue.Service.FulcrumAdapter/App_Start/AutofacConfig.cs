@@ -5,16 +5,10 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using PhilipsHue.Service.FulcrumAdapter.Logic;
 using PhilipsHue.Service.FulcrumAdapter.RestClients;
-using Q42.HueApi;
 using Q42.HueApi.Interfaces;
-using Xlent.Lever.Authentication.Sdk;
 using Xlent.Lever.Libraries2.Core.Application;
 using Xlent.Lever.Libraries2.Core.MultiTenant.Context;
 using Xlent.Lever.Libraries2.Core.MultiTenant.Model;
-using Xlent.Lever.Libraries2.Core.Platform.Authentication;
-using Xlent.Lever.Libraries2.WebApi.Platform.Authentication;
-using Xlent.Lever.Logger.Sdk;
-using Xlent.Lever.Logger.Sdk.RestClients;
 
 #pragma warning disable 1591
 
