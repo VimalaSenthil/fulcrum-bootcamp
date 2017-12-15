@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Xlent.Lever.Libraries2.Core.Application;
@@ -71,21 +70,21 @@ namespace PhilipsHue.Service.FulcrumAdapter.RestClients
         /// <inheritdoc />
         public async Task VisualNotificationSuccessAsync()
         {
-            var relativeUrl = $"api/VisualNotifications/Success";
+            var relativeUrl = "api/VisualNotifications/Success";
             await RestClient.PostNoResponseContentAsync(relativeUrl);
         }
 
         /// <inheritdoc />
         public async Task VisualNotificationWarningAsync()
         {
-            var relativeUrl = $"api/VisualNotifications/Warning";
+            var relativeUrl = "api/VisualNotifications/Warning";
             await RestClient.PostNoResponseContentAsync(relativeUrl);
         }
 
         /// <inheritdoc />
         public async Task VisualNotificationErrorAsync()
         {
-            var relativeUrl = $"api/VisualNotifications/Error";
+            var relativeUrl = "api/VisualNotifications/Error";
             await RestClient.PostNoResponseContentAsync(relativeUrl);
         }
     }

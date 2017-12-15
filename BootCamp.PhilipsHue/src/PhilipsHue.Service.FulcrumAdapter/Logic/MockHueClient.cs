@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
 using Q42.HueApi.Models;
@@ -34,7 +32,7 @@ namespace PhilipsHue.Service.FulcrumAdapter.Logic
             throw new NotImplementedException();
         }
 
-        public Task<HueResults> SendGroupCommandAsync(ICommandBody command, string @group = "0")
+        public Task<HueResults> SendGroupCommandAsync(ICommandBody command, string group = "0")
         {
             throw new NotImplementedException();
         }

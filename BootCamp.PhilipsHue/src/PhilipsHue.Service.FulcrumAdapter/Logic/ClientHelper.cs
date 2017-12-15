@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web.UI;
 using Q42.HueApi;
 using Q42.HueApi.ColorConverters;
 using Q42.HueApi.ColorConverters.HSB;
@@ -43,6 +41,7 @@ namespace PhilipsHue.Service.FulcrumAdapter.Logic
             var clientId = "";
             var clientSecret = "";
 
+            // ReSharper disable once UnusedVariable
             IRemoteAuthenticationClient authClient = new RemoteAuthenticationClient(clientId, clientSecret, appId);
 
             //If you already have an accessToken, call:
@@ -52,8 +51,8 @@ namespace PhilipsHue.Service.FulcrumAdapter.Logic
 
             //Else, reinitialize:
 
-            var authorizeUri = authClient.BuildAuthorizeUri("sample", "consoleapp");
-            var callbackUri = new Uri("https://localhost/q42hueapi");
+            //var authorizeUri = authClient.BuildAuthorizeUri("sample", "consoleapp");
+            //var callbackUri = new Uri("https://localhost/q42hueapi");
 
             //var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(WebAuthenticationOptions.None, authorizeUri, callbackUri);
 
@@ -137,6 +136,7 @@ namespace PhilipsHue.Service.FulcrumAdapter.Logic
             return true;
         }
 
+        // ReSharper disable once UnusedMember.Local
         private static string CalculateHash(string clientId, string clientSecret, string nonce)
         {
             var hash1 = MD5($"{clientId}:oauth2_client@api.meethue.com:{clientSecret}");
@@ -146,6 +146,8 @@ namespace PhilipsHue.Service.FulcrumAdapter.Logic
             return response;
         }
 
+        // ReSharper disable once UnusedParameter.Local
+        // ReSharper disable once InconsistentNaming
         private static string MD5(string str)
         {
             //var alg = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);

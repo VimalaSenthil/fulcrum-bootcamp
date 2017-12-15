@@ -21,6 +21,7 @@ namespace Statistics.Service.FulcrumAdapter.Controllers
         /// <param name="eventBody">The event body.</param>
         /// <returns></returns>
         /// <exception cref="FulcrumNotImplementedException"></exception>
+        /// TODO: Tutorial 4 - Implement this method
         [HttpPost]
         [Route("User/Created/1")]
         public async Task UserCreatedAsync(UserCreatedEvent eventBody)
@@ -41,7 +42,6 @@ namespace Statistics.Service.FulcrumAdapter.Controllers
         /// <param name="eventBody">The event body.</param>
         /// <returns></returns>
         /// <exception cref="FulcrumNotImplementedException"></exception>
-        /// TODO: Tutorial 4 - Implement this method
         [HttpPost]
         [Route("{entityName}/{eventName}/{majorVersion}")]
         public Task CatchAllEventsAsync(string entityName, string eventName, int majorVersion, dynamic eventBody)
