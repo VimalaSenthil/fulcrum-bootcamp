@@ -6,6 +6,7 @@ using CustomerMaster.Service.FulcrumAdapter.Contract;
 using CustomerMaster.Service.FulcrumAdapter.RestClients;
 using Xlent.Lever.Authentication.Sdk.Attributes;
 using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Error.Logic;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
@@ -18,7 +19,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
     public class UserController : ApiController
     {
         private readonly ICrud<User, string> _persistance;
-        private readonly IApiClient _apiClient;
+        private readonly IApiClient _apiClient; //This client is not used yet, use it to publish your event
 
         /// <summary>
         /// Constructor
@@ -35,6 +36,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
         /// Create a new <paramref name="user"/> record.
         /// </summary>
         /// <returns>The new id for the record.</returns>
+        //TODO: Tutorial 3 - Implement this method
         [HttpPost]
         [Route("")]
         public async Task<string> Create([FromBody] User user)
@@ -42,7 +44,10 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
             ServiceContract.RequireNotNull(user, nameof(user));
             ServiceContract.RequireValidated(user, nameof(user));
 
-            return await _persistance.CreateAsync(user);
+            var id =  await _persistance.CreateAsync(user);
+
+            throw new FulcrumNotImplementedException("Method /Users is not yet implemented - Part of tutorial 3");
+            return id;
         }
 
         /// <summary>
@@ -84,6 +89,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
             ServiceContract.RequireValidated(user, nameof(user));
             //TODO: Tutorial 3 - Publish an event here
             await _persistance.UpdateAsync(user.Id, user);
+            //Publish event here
         }
 
         /// <summary>

@@ -14,11 +14,11 @@ namespace Api.Service.Dal
         {
         }
 
-
         //TODO: Tutorial 1 - Implement this method
-        public Task<User> GetUser(string id)
+        public async Task<User> GetUser(string id)
         {
-            throw new FulcrumNotImplementedException();
+            await Task.Yield(); //Remove this line
+            throw new FulcrumNotImplementedException("GetUser is not yet implemented in CustomerMasterClient - Part of tutorial 1");
         }
 
         public async Task<List<User>> GetUsers(string type = null)
@@ -35,9 +35,10 @@ namespace Api.Service.Dal
         }
 
         //TODO: Tutorial 1 - Implement this method
-        public Task DeleteUser(string id)
+        public async Task DeleteUser(string id)
         {
-            throw new FulcrumNotImplementedException();
+            await Task.Yield(); //Remove this line
+            throw new FulcrumNotImplementedException("GetUser is not yet implemented in CustomerMasterClient - Part of tutorial 1");
         }
 
         public async Task<string> AddUser(User user)
@@ -47,9 +48,10 @@ namespace Api.Service.Dal
         }
 
         //TODO: Tutorial 1 - Implement this method
-        public Task<string> UpdateUser(User user)
+        public async Task<string> UpdateUser(User user)
         {
-            throw new FulcrumNotImplementedException();
+            await Task.Yield(); //Remove this line
+            throw new FulcrumNotImplementedException("Method UpdateUser is not yet implemented in CustomerMasterCLient - Part of tutorial 1");
         }
 
         public async Task<Statistics> GetStatistics(string type = null, DateTimeOffset? startInclusive = null, DateTimeOffset? endExclusive = null)

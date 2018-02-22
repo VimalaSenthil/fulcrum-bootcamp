@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Statistics.Service.FulcrumAdapter.Contract;
+using Statistics.Service.FulcrumAdapter.RestClients;
 using Xlent.Lever.Authentication.Sdk.Attributes;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Error.Logic;
@@ -15,6 +16,16 @@ namespace Statistics.Service.FulcrumAdapter.Controllers
     [RoutePrefix("api/Events")]
     public class EventsController : ApiController
     {
+        private readonly IApiClient _apiClient;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiClient"></param>
+        public EventsController(IApiClient apiClient)
+        {
+            _apiClient = apiClient;
+        }
         /// <summary>
         /// Subscription for the User.Created event.
         /// </summary>
@@ -28,9 +39,8 @@ namespace Statistics.Service.FulcrumAdapter.Controllers
         {
             ServiceContract.RequireNotNull(eventBody, nameof(eventBody));
 
-            // TODO: implement
-
-            await Task.Yield();
+            await Task.Yield(); //Remove this line
+            throw new FulcrumNotFoundException("Method POST /User/Created/1 is not yet implemented - Part of tutorial 4");
         }
 
         /// <summary>

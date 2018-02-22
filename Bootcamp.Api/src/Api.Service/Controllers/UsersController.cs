@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Service.Dal;
+using Api.Service.Helper;
 using Api.Service.Models;
+using Swashbuckle.Swagger.Annotations;
 using Xlent.Lever.KeyTranslator.RestClients.Facade.Clients;
 using Xlent.Lever.KeyTranslator.Sdk;
 using Xlent.Lever.Libraries2.Core.Assert;
@@ -26,11 +28,18 @@ namespace Api.Service.Controllers
         //TODO: Tutorial 1 - Implement this method
         [Route("{id}")]
         [HttpGet]
-        public User Get(string id)
+        public async Task<User> GetAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
-            
-            throw new FulcrumNotImplementedException();
+
+            /* Code for translating the user type to approperiate context 
+             * The call to translate maps a concept (the 'kind' of value to be translated) to
+             * a clients context (each client is assigned a context which decides the range to translate from/to
+             * See GetAllAsync // wiki for more insight in translation.
+             */
+
+            await Task.Yield(); //Remove this line
+            throw new FulcrumNotImplementedException("Method GET /Users/{id} is not yet implemented - Part of tutorial 1");
         }
 
         /*
@@ -38,6 +47,7 @@ namespace Api.Service.Controllers
          */
         [Route("")]
         [HttpGet]
+        [SwaggerOperationFilter(typeof(SwaggerUserOperationFIlter))]
         public async Task<List<User>> GetAllAsync(string type = null)
         {
             if (!string.IsNullOrWhiteSpace(type))
@@ -61,7 +71,7 @@ namespace Api.Service.Controllers
 
         [Route("")]
         [HttpPost]
-        public async Task<string> Post(User user)
+        public async Task<string> PostAsync(User user)
         {
             ServiceContract.RequireNotNull(user, nameof(user));
             ServiceContract.RequireValidated(user, nameof(user));
@@ -73,7 +83,7 @@ namespace Api.Service.Controllers
             return await _customerMasterClient.AddUser(user);
         }
 
-        //TODO: Tutorial 1 - Implement this method
+        //TODO: Tutorial 1 - Implement this method (optional)
         [Route("{id}")]
         [HttpPut]
         public async Task<User> PutAsync(string id, User user)
@@ -86,17 +96,17 @@ namespace Api.Service.Controllers
                 .Add("user.type", user.Type, translatedValue => user.Type = translatedValue)
                 .ExecuteAsync();
 
-            throw new FulcrumNotImplementedException();
+            throw new FulcrumNotImplementedException("Method PUT /Users/{id} is not yet implemented - Part of tutorial 1");
         }
 
-        //TODO: Tutorial 1 - Implement this method
+        //TODO: Tutorial 1 - Implement this method (optional)
         [Route("{id}")]
         [HttpDelete]
         public User DeleteOne(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            throw new FulcrumNotImplementedException();
+            throw new FulcrumNotImplementedException("Method DELETE /Users/{ id } is not yet implemented - Part of tutorial 1");
         }
 
         /*

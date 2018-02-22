@@ -39,7 +39,6 @@ namespace Statistics.Service.FulcrumAdapter.Contract
             var now = DateTimeOffset.Now;
             if (StartInclusive != null) FulcrumValidate.IsLessThanOrEqualTo(now, StartInclusive.Value, nameof(StartInclusive), errorLocation);
             if (EndExlusive != null) FulcrumValidate.IsLessThanOrEqualTo(now, EndExlusive.Value, nameof(EndExlusive), errorLocation);
-            // TODO: More validation?
         }
     }
 }

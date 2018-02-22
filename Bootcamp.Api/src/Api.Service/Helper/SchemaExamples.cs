@@ -13,8 +13,9 @@ namespace Api.Service.Helper
             {
                 schema.example = new User
                 {
+                    Id = "D7922785-8889-4143-BDD1-95F6905B641D",
                     Name = "Anders Andersson",
-                    Type = "External|Internal"
+                    Type = "External"
                 };
             }
         }
