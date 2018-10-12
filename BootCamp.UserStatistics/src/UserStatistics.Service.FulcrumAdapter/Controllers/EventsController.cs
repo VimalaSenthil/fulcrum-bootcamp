@@ -11,7 +11,7 @@ namespace UserStatistics.Service.FulcrumAdapter.Controllers
     /// <summary>
     /// Receive events
     /// </summary>
-    [FulcrumAuthorize(AuthenticationRoleEnum.InternalSystemUser)]
+    [FulcrumAuthorize(AuthenticationRoleEnum.InternalSystemUser, AuthenticationRoleEnum.PlatformService)]
     [RoutePrefix("api/Events")]
     public class EventsController : ApiController
     {
