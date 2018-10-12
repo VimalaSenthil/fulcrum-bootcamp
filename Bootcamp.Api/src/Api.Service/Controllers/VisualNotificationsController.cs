@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Service.Dal;
+using Xlent.Lever.Authentication.Sdk.Attributes;
+using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 
 namespace Api.Service.Controllers
 {
     [RoutePrefix("api/VisualNotifications")]
+    [FulcrumAuthorize(AuthenticationRoleEnum.ExternalSystemUser)]
     public class VisualNotificationsController : ApiController
     {
         private readonly IVisualNotificationClient _client;

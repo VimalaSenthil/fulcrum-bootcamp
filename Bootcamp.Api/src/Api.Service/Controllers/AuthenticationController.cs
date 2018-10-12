@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Service.Dal;
-using Api.Service.Models;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 
@@ -20,7 +19,7 @@ namespace Api.Service.Controllers
 
         [HttpPost]
         [Route("Tokens")]
-        public async Task<AccessToken> Token(AuthenticationCredentials credentials)
+        public async Task<AuthenticationToken> Token(AuthenticationCredentials credentials)
         {
             ServiceContract.RequireNotNull(credentials, nameof(credentials));
             ServiceContract.RequireNotNullOrWhitespace(credentials.ClientId, nameof(credentials.ClientId));

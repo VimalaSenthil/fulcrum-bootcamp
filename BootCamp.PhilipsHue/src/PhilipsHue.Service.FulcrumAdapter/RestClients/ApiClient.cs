@@ -48,10 +48,10 @@ namespace PhilipsHue.Service.FulcrumAdapter.RestClients
         }
 
         /// <inheritdoc />
-        public async Task LogAsync(LogInstanceInformation message)
+        public async Task LogAsync(LogBatch batch)
         {
             var relativeUrl = "api/Logs";
-            await RestClient.PostNoResponseContentAsync(relativeUrl, message);
+            await RestClient.PostNoResponseContentAsync(relativeUrl, batch);
         }
 
         /// <inheritdoc />

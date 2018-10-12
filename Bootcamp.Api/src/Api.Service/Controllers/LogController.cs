@@ -18,12 +18,12 @@ namespace Api.Service.Controllers
 
         [Route("")]
         [HttpPost]
-        public async Task<IHttpActionResult> LogAsync(LogInstanceInformation message)
+        public async Task<IHttpActionResult> LogAsync(LogBatch batch)
         {
-            ServiceContract.RequireNotNull(message, nameof(message));
-            ServiceContract.RequireValidated(message, nameof(message));
+            ServiceContract.RequireNotNull(batch, nameof(batch));
+            ServiceContract.RequireValidated(batch, nameof(batch));
 
-            await FulcrumApplication.Setup.FullLogger.LogAsync(message);
+            await FulcrumApplication.Setup.FullLogger.LogAsync(batch);
             return new StatusCodeResult(HttpStatusCode.Accepted, this);
         }
     }

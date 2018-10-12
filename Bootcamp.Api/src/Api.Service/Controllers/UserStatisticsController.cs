@@ -3,12 +3,15 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Service.Dal;
 using Api.Service.Models;
+using Xlent.Lever.Authentication.Sdk.Attributes;
 using Xlent.Lever.KeyTranslator.RestClients.Facade.Clients;
 using Xlent.Lever.KeyTranslator.Sdk;
+using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 
 namespace Api.Service.Controllers
 {
     [RoutePrefix("UserStatistics")]
+    [FulcrumAuthorize(AuthenticationRoleEnum.ExternalSystemUser)]
     public class UserStatisticsController : ApiController
     {
         private readonly ITranslateClient _translateClient;

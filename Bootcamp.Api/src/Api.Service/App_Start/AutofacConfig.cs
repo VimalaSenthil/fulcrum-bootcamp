@@ -39,7 +39,7 @@ namespace Api.Service
             var organization = ConfigurationManager.AppSettings["Organization"];
             var environment = ConfigurationManager.AppSettings["Environment"];
             var tenant = new Tenant(organization, environment);
-            builder.RegisterInstance(tenant).As<ITenant>();
+            builder.RegisterInstance(tenant).As<Tenant>();
 
             var authServiceCredentials = new AuthenticationCredentials { ClientId = "user", ClientSecret = "pwd" };
 

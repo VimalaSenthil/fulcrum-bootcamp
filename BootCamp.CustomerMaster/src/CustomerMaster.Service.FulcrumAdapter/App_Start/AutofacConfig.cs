@@ -8,8 +8,8 @@ using CustomerMaster.Service.FulcrumAdapter.RestClients;
 using Xlent.Lever.Libraries2.Core.Application;
 using Xlent.Lever.Libraries2.Core.MultiTenant.Context;
 using Xlent.Lever.Libraries2.Core.MultiTenant.Model;
-using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.MemoryStorage;
 
 #pragma warning disable 1591
 
@@ -22,14 +22,14 @@ namespace CustomerMaster.Service.FulcrumAdapter
             var builder = new ContainerBuilder();
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<MemoryPersistance<User, string>>().As<ICrud<User, string>>().SingleInstance();
+            builder.RegisterType<CrudMemory<User, string>>().As<ICrud<User, string>>().SingleInstance();
 
             builder.RegisterType<TenantConfigurationValueProvider>().As<ITenantConfigurationValueProvider>().SingleInstance();
 
             var organization = ConfigurationManager.AppSettings["Organization"];
             var environment = ConfigurationManager.AppSettings["Environment"];
             var tenant = new Tenant(organization, environment);
-            builder.RegisterInstance(tenant).As<ITenant>();
+            builder.RegisterInstance(tenant).As<Tenant>();
 
             var apiClient = new ApiClient(ConfigurationManager.AppSettings["Api.Url"]);
             FulcrumApplication.Setup.FullLogger = apiClient;

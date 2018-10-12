@@ -18,14 +18,14 @@ namespace Api.Service.Controllers
     public class ServiceMetasController : ApiController
     {
 
-        private readonly ITenant _tenant;
+        private readonly Tenant _tenant;
         private readonly ITranslateClient _translateClient;
         private readonly ITokenRefresherWithServiceClient _tokenRefresher;
         private readonly IVisualNotificationClient _visualNotificationClient;
         private readonly ICustomerMasterClient _customerMasterClient;
         private readonly IUserStatisticsClient _userStatisticsClient;
 
-        public ServiceMetasController(ITenant tenant, ITranslateClient translateClient, ITokenRefresherWithServiceClient tokenRefresher, IVisualNotificationClient visualNotificationClient, ICustomerMasterClient customerMasterClient, IUserStatisticsClient userStatisticsClient)
+        public ServiceMetasController(Tenant tenant, ITranslateClient translateClient, ITokenRefresherWithServiceClient tokenRefresher, IVisualNotificationClient visualNotificationClient, ICustomerMasterClient customerMasterClient, IUserStatisticsClient userStatisticsClient)
         {
             _tenant = tenant;
             _translateClient = translateClient;
@@ -34,6 +34,8 @@ namespace Api.Service.Controllers
             _customerMasterClient = customerMasterClient;
             _userStatisticsClient = userStatisticsClient;
         }
+
+        // TODO: New with dependencies and Health
 
         [Route("ServiceHealth")]
         [HttpGet]

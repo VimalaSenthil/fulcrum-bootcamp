@@ -38,7 +38,7 @@ namespace PhilipsHue.Service.FulcrumAdapter
             var organization = ConfigurationManager.AppSettings["Organization"];
             var environment = ConfigurationManager.AppSettings["Environment"];
             var tenant = new Tenant(organization, environment);
-            builder.RegisterInstance(tenant).As<ITenant>();
+            builder.RegisterInstance(tenant).As<Tenant>();
 
             var apiClient = new ApiClient(ConfigurationManager.AppSettings["Api.Url"]);
             FulcrumApplication.Setup.FullLogger = apiClient;

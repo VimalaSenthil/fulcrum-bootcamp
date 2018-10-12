@@ -11,7 +11,7 @@ using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 
 namespace PhilipsHue.Service.FulcrumAdapter.Controllers
 {
-    /// <inheritdoc cref="IVisualNotificationController" />
+    /// <inheritdoc />
     [FulcrumAuthorize(AuthenticationRoleEnum.InternalSystemUser)]
     [RoutePrefix("api/Notifications")]
     public class VisualNotificationController : ApiController
@@ -31,7 +31,7 @@ namespace PhilipsHue.Service.FulcrumAdapter.Controllers
         }
 
         /// <summary>
-        /// Status
+        /// Get status
         /// </summary>
         [AllowAnonymous]
         [Route("Status")]
@@ -41,7 +41,9 @@ namespace PhilipsHue.Service.FulcrumAdapter.Controllers
             return _status;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Set status to success
+        /// </summary>
         [HttpPost]
         [Route("Success")]
         public async Task SuccessAsync()
@@ -54,7 +56,9 @@ namespace PhilipsHue.Service.FulcrumAdapter.Controllers
             await _hueClient.SendCommandAsync(command, _lamps);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Set status to warning
+        /// </summary>
         [HttpPost]
         [Route("Warning")]
         public async Task WarningAsync()
@@ -67,7 +71,9 @@ namespace PhilipsHue.Service.FulcrumAdapter.Controllers
             await _hueClient.SendCommandAsync(command, _lamps);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Set status to error
+        /// </summary>
         [HttpPost]
         [Route("Error")]
         public async Task ErrorAsync()

@@ -3,12 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using CustomerMaster.Service.FulcrumAdapter.Contract;
-using CustomerMaster.Service.FulcrumAdapter.RestClients;
 using Xlent.Lever.Authentication.Sdk.Attributes;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
-using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 
 namespace CustomerMaster.Service.FulcrumAdapter.Controllers
 {
@@ -17,18 +15,15 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
     [RoutePrefix("api/Users")]
     public class UserController : ApiController
     {
-        private readonly ICrud<User, string> _persistance;
-        private readonly IApiClient _apiClient;
+        private readonly ICrud<User, string> _persistence;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="persistance">How we deal with persistance</param>
-        /// <param name="apiClient">Rest client to call the API</param>
-        public UserController(ICrud<User, string> persistance, IApiClient apiClient)
+        /// <param name="persistence">How we deal with persistence</param>
+        public UserController(ICrud<User, string> persistence)
         {
-            _persistance = persistance;
-            _apiClient = apiClient;
+            _persistence = persistence;
         }
 
         /// <summary>
@@ -42,7 +37,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
             ServiceContract.RequireNotNull(user, nameof(user));
             ServiceContract.RequireValidated(user, nameof(user));
 
-            return await _persistance.CreateAsync(user);
+            return await _persistence.CreateAsync(user);
         }
 
         /// <summary>
@@ -55,7 +50,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            return await _persistance.ReadAsync(id);
+            return await _persistence.ReadAsync(id);
         }
 
         /// <summary>
@@ -63,14 +58,15 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
         /// </summary>
         [HttpGet]
         [Route("")]
-        public Task<IEnumerable<User>> ReadAll(string type = null)
+        public async Task<IEnumerable<User>> ReadAll(string type = null)
         {
-            var users = (IEnumerable<User>)new PageEnvelopeEnumerable<User>(offset => _persistance.ReadAllAsync(offset).Result);
+            var users = await _persistence.ReadAllAsync();
+            //var users = (IEnumerable<User>)new PageEnvelopeEnumerable<User>((offset, t) => _persistance.ReadAllAsync(offset).Result);
             if (!string.IsNullOrWhiteSpace(type))
             {
                 users = users.Where(x => x.Type == type);
             }
-            return Task.FromResult(users);
+            return users;
         }
 
         /// <summary>
@@ -83,7 +79,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireValidated(user, nameof(user));
 
-            await _persistance.UpdateAsync(user.Id, user);
+            await _persistence.UpdateAsync(user.Id, user);
         }
 
         /// <summary>
@@ -95,7 +91,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            await _persistance.DeleteAsync(id);
+            await _persistence.DeleteAsync(id);
         }
 
         /// <summary>
@@ -106,7 +102,7 @@ namespace CustomerMaster.Service.FulcrumAdapter.Controllers
         [Route("")]
         public async Task DeleteAll()
         {
-            await _persistance.DeleteAllAsync();
+            await _persistence.DeleteAllAsync();
         }
     }
 }
